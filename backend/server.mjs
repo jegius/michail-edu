@@ -1,8 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
+import express from 'express';
+import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import {diContainer} from './di/di.mjs';
+import {messageService} from './services/message-service.mjs';
+import {SERVICES} from './di/api.mjs';
+import {chatController} from './controllers/chat-controller.mjs';
+import swaggerJSDoc from 'swagger-jsdoc';
 
 const app = express();
 
@@ -10,27 +13,27 @@ const app = express();
 app.use(cors());
 
 // Загрузка документации Swagger
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Random Message API',
+            version: '1.0.0',
+            description: 'API для возврата массива случайных сообщений по chatId',
+        },
+    },
+    apis: ['./controllers/*'], // Путь к файлам, содержащим документацию JSDoc
+};
 
-// Функция для генерации случайных сообщений
-function generateMessages(chatId, numMessages = 5) {
-    const messages = [];
-    for (let i = 0; i < numMessages; i++) {
-        messages.push({
-            id: `${chatId}-${i}`,
-            author: `Author ${Math.floor(Math.random() * 10)}`,
-            message: `Message ${Math.random().toString(36).substring(7)}`,
-        });
-    }
-    return messages;
-}
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+diContainer.register(SERVICES.messages, messageService);
+
 
 // Метод GET возвращает массив случайных сообщений для chatId
-app.get('/messages/:chatId', (req, res) => {
-    const { chatId } = req.params;
-    const messages = generateMessages(chatId);
-    res.json(messages);
-});
+app.get('/messages/:chatId', chatController);
 
 const PORT = 3000;
 app.listen(PORT, () => {
