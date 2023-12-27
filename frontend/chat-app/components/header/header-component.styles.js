@@ -1,8 +1,12 @@
 export function getHeaderComponentStyles() {
+
+  
+
   return `
  <style>
+    @import url('../common.css');
     
-     *{
+    *{
       text-decoration: none;
       padding: 0px;
       margin: 0px;
@@ -26,7 +30,16 @@ export function getHeaderComponentStyles() {
       position: relative;
     }
     
+    .header-profile-photo{
+      background-image: url('public/images/profile-img.png');
+      width: 38px;
+      height: 39px;
+    }
+    
     .header-profile-status-img{
+      background-image: url('public/images/active-dot.png');
+      width: 10px;
+      height: 10px;
       position: absolute;
       right: 1px;
       bottom: 1px;
@@ -41,16 +54,16 @@ export function getHeaderComponentStyles() {
     
     .header-profile-name-text{
       font-weight: 500;
-      font-size: 20px;
-      line-height: 24px;
-      color: #1E1E1E;
+      font-size: 1,5rem;
+      line-height: 1rem;
+      color: var(--gray-color);
     }
     
     .header-profile-status-paragraph{
       font-weight: 400;
-      font-size: 12px;
-      line-height: 14,5px;
-      color: #707070;
+      font-size: 0,5rem;
+      line-height: 2rem;
+      color: var(--black-color);
     }
   
   </style>
