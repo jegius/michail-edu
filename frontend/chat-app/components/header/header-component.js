@@ -1,16 +1,16 @@
+import { createProfileImg } from '../profile-img/profile-img-component.js';
 import {getHeaderComponentStyles} from './header-component.styles.js';
+
+let profileImgElem = document.createElement("headerImg");
+
+profileImgElem = createProfileImg();
 
 export function createHeader() {
     return `
     ${getHeaderComponentStyles()}
     
     <div class="header center">
-      <div class="header-profile-photo-cover"> 
-        <div class="header-profile-photo"> 
-        </div>
-        <div class="header-profile-status-dot">
-        </div>
-      </div>
+      ${profileImgElem}
       
       <div class="header-profile-name-cover">
           <h2 class="header-profile-name-text">Ope</h2>
