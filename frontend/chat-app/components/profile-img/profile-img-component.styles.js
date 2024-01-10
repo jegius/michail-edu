@@ -4,7 +4,7 @@ export function getProfileImgComponentStyles() {
  <style>
     @import url('../common.css');
     
-    .header-profile-photo, .header-profile-photo-cover, .header-profile-status-dot {
+    .header-profile-photo, .header-profile-photo-cover, .header-profile-status-dot, .header-profile-img-letter, .header-profile-status-img-inactive {
       font-size: 16px;
       text-decoration: none;
       padding: 0rem;
@@ -21,6 +21,15 @@ export function getProfileImgComponentStyles() {
       width: 2.375rem;
       height: 2.4rem;
     }
+
+    .header-profile-img-letter {
+      text-align: center;
+      color: white;
+      background-color: orange;
+      border-radius: 50%;
+      width: 2.375rem;
+      height: 2.4rem;
+    }
     
     .header-profile-status-dot {
       background: #53E04E;
@@ -31,6 +40,13 @@ export function getProfileImgComponentStyles() {
       position: absolute;
       right: 0.063rem;
       bottom: 0.063rem;
+    }
+
+    .header-profile-status-img-inactive {
+      background: var(--light-gray-color);
+      border: none;
+      width: 0.7rem;
+      height: 0.7rem;
     }
     
   </style>
