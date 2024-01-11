@@ -6,6 +6,7 @@ import {SERVICES} from './chat-app/di/api.js';
 import {messageService} from './chat-app/services/messageService.js';
 import {httpService} from './chat-app/services/httpService.js';
 import {ChatComponent} from './chat-app/components/chat/chat-component.js';
+import { HeaderComponent } from './chat-app/components/header/header-component.js';
 
 
 diContainer.register(SERVICES.messages, messageService);
@@ -13,11 +14,14 @@ diContainer.register(SERVICES.http, httpService);
 
 [
     ChatComponent,
+    HeaderComponent,
 ].map(component => customElements.define(component.name, component));
+
 
 
 document.querySelector('#app').innerHTML = `
   <div>
+    <header-component></header-component>
     <a href="https://vitejs.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
     </a>

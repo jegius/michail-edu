@@ -23,6 +23,8 @@ export function getHeaderComponentStyles() {
       align-items: flex-start;
       gap: 1rem;
       margin-top: 1.25rem;
+      background-color: #EEEEEE;
+      padding-top: 1rem;
     }
     
     .header-profile-name-cover {
@@ -34,16 +36,16 @@ export function getHeaderComponentStyles() {
     
     .header-profile-name-text {
       font-weight: 500;
-      font-size: 1,5rem;
-      line-height: 1rem;
-      color: var(--gray-color);
+      font-size: 1.4rem;
+      line-height: 0.75rem;
+      color: #1E1E1E;
     }
     
     .header-profile-status-paragraph {
       font-weight: 400;
-      font-size: 0,5rem;
+      font-size: 0.75rem;
       line-height: 2rem;
-      color: var(--black-color);
+      color: #707070;
     }
   
   </style>

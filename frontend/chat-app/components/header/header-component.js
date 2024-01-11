@@ -1,35 +1,24 @@
-import { createProfileImg } from '../profile-img/profile-img-component.js';
-import {getHeaderComponentStyles} from './header-component.styles.js';
+import { createHeader } from './header-component.template.js';
 
-export let userName = 'Ope';
+export class HeaderComponent extends HTMLElement {
 
-export let activeStatus = true;
+  static get name() {
+    return "header-component";
+  }
 
-export let profileImgSrc = "public/images/profile-img.png";
+    constructor() {
+        super();
+        this.attachShadow({ mode: "open" });
+    }
 
-let profileImgElem = document.createElement("headerImg");
+    connectedCallback() {
+      this.#render()
+    }
 
-profileImgElem = createProfileImg();
+    #render() {
+        const templateElem = document.createElement("template");
+        templateElem.innerHTML = createHeader();
 
-let activeStatusSpan;
-
-if (activeStatus) {
-  activeStatusSpan = 'Active'
-} else {
-  activeStatusSpan = 'Inactive'
-}
-
-export function createHeader() {
-    return `
-    ${getHeaderComponentStyles()}
-    
-    <div class="header center">
-      ${profileImgElem}
-      
-      <div class="header-profile-name-cover">
-          <h2 class="header-profile-name-text">${userName}</h2>
-          <span class="header-profile-status-paragraph">${activeStatusSpan}</span>
-      </div>
-    </div>
-    `;
+        this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
+    }
 }
