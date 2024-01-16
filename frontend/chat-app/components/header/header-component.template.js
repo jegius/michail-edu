@@ -1,25 +1,19 @@
 import { createProfileImg } from '../profile-img/profile-img-component.js';
 import {getHeaderComponentStyles} from './header-component.styles.js';
 
-export let userName = 'Ope';
+export function createHeader(imgURL, userName, activeStatus) {
+  let activeStatusSpan
 
-export let activeStatus = true;
+  if (activeStatus) {
+    activeStatusSpan = 'Active'
+  } else {
+    activeStatusSpan = 'Inactive'
+  }
 
-export let profileImgSrc = "public/images/profile-img.png";
+  let profileImgElem = document.createElement("headerImg");
 
-let profileImgElem = document.createElement("headerImg");
+  profileImgElem = createProfileImg(imgURL, activeStatus, userName);
 
-profileImgElem = createProfileImg();
-
-let activeStatusSpan;
-
-if (activeStatus) {
-  activeStatusSpan = 'Active'
-} else {
-  activeStatusSpan = 'Inactive'
-}
-
-export function createHeader() {
     return `
     ${getHeaderComponentStyles()}
     
