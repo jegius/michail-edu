@@ -29,5 +29,28 @@ export class ProfileImgComponent extends HTMLElement {
     templateElem.innerHTML = createProfileImg(this.#imagesService, this.#namesService, this.#activityStatusService);
 
     this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
+
+    let profileStatusImgElement = this.shadowRoot.querySelector('.header-profile-status-dot')
+  
+    if (this.#activityStatusService) {
+      profileStatusImgElement.classList.remove('header-profile-status-img-inactive')
+    } else {
+      profileStatusImgElement.classList.add('header-profile-status-img-inactive')
+    }
+  
+    let profilePhotoCover = this.shadowRoot.querySelector('.header-profile-photo-cover');
+    let profileImgElement;
+  
+    if (this.#imagesService !== '') {
+      profileImgElement = document.createElement('img');
+      profileImgElement.src = this.#imagesService;
+      profilePhotoCover.append(profileImgElement);
+      profileImgElement.classList.add('header-profile-photo');
+    } else {
+      profileImgElement = document.createElement('h1');
+      profileImgElement.textContent = this.#namesService[0];
+      profilePhotoCover.append(profileImgElement);
+      profileImgElement.classList.add('header-profile-img-letter');
+    }
   }
 }

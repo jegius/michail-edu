@@ -17,7 +17,6 @@ export function getProfileImgComponentStyles() {
     }
     
     .header-profile-photo {
-      background-image: url('public/images/profile-img.png');
       width: 2.375rem;
       height: 2.4rem;
     }
@@ -29,6 +28,7 @@ export function getProfileImgComponentStyles() {
       border-radius: 50%;
       width: 2.375rem;
       height: 2.4rem;
+      font-size: 1.6rem;
     }
     
     .header-profile-status-dot {
@@ -38,8 +38,8 @@ export function getProfileImgComponentStyles() {
       width: 0.438rem;
       height: 0.438rem;
       position: absolute;
-      right: 0.063rem;
-      bottom: 0.063rem;
+      right: 0.15rem;
+      bottom: 0.25rem;
     }
 
     .header-profile-status-img-inactive {

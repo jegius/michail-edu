@@ -1,5 +1,4 @@
 import { ProfileImgComponent } from '../profile-img/profile-img-component.js';
-import { createProfileImg } from '../profile-img/profile-img-component.template.js';
 import {getHeaderComponentStyles} from './header-component.styles.js';
 
 export function createHeader(imgURL, userName, activeStatus) {
@@ -12,10 +11,6 @@ export function createHeader(imgURL, userName, activeStatus) {
   }
 
   customElements.define("profile-img-component", ProfileImgComponent);
-
-  // let profileImgElem = document.createElement("headerImg");
-
-  // profileImgElem = createProfileImg(imgURL, activeStatus, userName);
 
     return `
     ${getHeaderComponentStyles()}
