@@ -15,19 +15,19 @@ export class HeaderComponent extends HTMLElement {
     return "header-component";
   }
 
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-    }
+  constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
+  }
 
-    connectedCallback() {
-      this.#render()
-    }
+  connectedCallback() {
+    this.#render()
+  }
 
-    #render() {
-        const templateElem = document.createElement("template");
-        templateElem.innerHTML = createHeader(this.#imagesService, this.#namesService, this.#activityStatusService);
+  #render() {
+    const templateElem = document.createElement("template");
+    templateElem.innerHTML = createHeader(this.#imagesService, this.#namesService, this.#activityStatusService);
 
-        this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
-    }
+    this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
+  }
 }

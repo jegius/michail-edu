@@ -1,4 +1,5 @@
-import { createProfileImg } from '../profile-img/profile-img-component.js';
+import { ProfileImgComponent } from '../profile-img/profile-img-component.js';
+import { createProfileImg } from '../profile-img/profile-img-component.template.js';
 import {getHeaderComponentStyles} from './header-component.styles.js';
 
 export function createHeader(imgURL, userName, activeStatus) {
@@ -10,15 +11,17 @@ export function createHeader(imgURL, userName, activeStatus) {
     activeStatusSpan = 'Inactive'
   }
 
-  let profileImgElem = document.createElement("headerImg");
+  customElements.define("profile-img-component", ProfileImgComponent);
 
-  profileImgElem = createProfileImg(imgURL, activeStatus, userName);
+  // let profileImgElem = document.createElement("headerImg");
+
+  // profileImgElem = createProfileImg(imgURL, activeStatus, userName);
 
     return `
     ${getHeaderComponentStyles()}
     
     <div class="header center">
-      ${profileImgElem}
+      <profile-img-component></profile-img-component>
       
       <div class="header-profile-name-cover">
           <h2 class="header-profile-name-text">${userName}</h2>

@@ -17,6 +17,7 @@ export function getProfileImgComponentStyles() {
     }
     
     .header-profile-photo {
+      background-image: url('public/images/profile-img.png');
       width: 2.375rem;
       height: 2.4rem;
     }

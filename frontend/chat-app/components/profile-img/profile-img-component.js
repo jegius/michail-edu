@@ -1,54 +1,33 @@
-import { getProfileImgComponentStyles } from "./profile-img-component.styles";
+import { getActivityStatusService } from '../../services/activityService.js';
+import { getImagesService } from '../../services/imagesService.js';
+import { getNameService } from '../../services/namesService.js';
+import { createProfileImg } from './profile-img-component.template.js';
 
-  // let profileStatusImgElement = document.querySelector('.header-profile-status-dot')
-  
-  // if (activeStatus) {
-  //   profileStatusImgElement.classList.add('header-profile-status-img-inactive')
-  // } else {
-  //   profileStatusImgElement.classList.remove('header-profile-status-img-inactive')
-  // }
+export class ProfileImgComponent extends HTMLElement {
 
-  // let profilePhotoCover = document.querySelector('.header-profile-photo-cover');
-  // let profileImgElement;
+  #imagesService = getImagesService()
 
-  // if (profileImgSrc !== '') {
-  //   profileImgElement = document.createElement('img');
-  //   profileImgElement.src = profileImgSrc;
-  //   profilePhotoCover.append(profileImgElement);
-  //   profileImgElement.classList.add('header-profile-photo');
-  // } else {
-  //   profileImgElement = document.createElement('h1');
-  //   profileImgElement.textContent = userName[0];
-  //   profilePhotoCover.append(profileImgElement);
-  //   profileImgElement.classList.add('header-profile-img-letter');
-  // }
+  #namesService = getNameService()
 
-export function createProfileImg(imgURL, activityStatus, userName) {
+  #activityStatusService = getActivityStatusService()
 
-  let profileStatusDot = '<div class="header-profile-status-dot"></div>'
-  
-  if (!activityStatus) {
-    profileStatusDot = '<div class="header-profile-status-dot header-profile-status-img-inactive"></div>'
-  } else {
-    profileStatusDot = '<div class="header-profile-status-dot"></div>'
+  static get name() {
+    return "profile-img-component";
   }
 
-  let profileImgElement;
-
-  // imgURL = ''
-
-  if (imgURL !== '') {
-    profileImgElement = `<img src=${imgURL} alt="" class="header-profile-photo">`
-  } else {
-    profileImgElement = `<h1 class="header-profile-img-letter">${userName[0]}</h1>`
+  constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
   }
 
-    return `
-    ${getProfileImgComponentStyles()}
-    
-      <div class="header-profile-photo-cover"> 
-        ${profileImgElement}
-        ${profileStatusDot}
-      </div>
-    `;
+  connectedCallback() {
+    this.#render()
+  }
+
+  #render() {
+    const templateElem = document.createElement("template");
+    templateElem.innerHTML = createProfileImg(this.#imagesService, this.#namesService, this.#activityStatusService);
+
+    this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
+  }
 }
