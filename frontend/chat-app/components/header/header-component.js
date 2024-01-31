@@ -1,16 +1,7 @@
-import { getActivityStatusService } from '../../services/activityService.js';
-import { getImagesService } from '../../services/imagesService.js';
-import { getNameService } from '../../services/namesService.js';
+import { UserInfoComponent } from '../user-info/user-info-component.js';
 import { createHeader } from './header-component.template.js';
 
 export class HeaderComponent extends HTMLElement {
-
-  #imagesService = getImagesService()
-
-  #namesService = getNameService()
-
-  #activityStatusService = getActivityStatusService()
-
   static get name() {
     return "header-component";
   }
@@ -25,8 +16,9 @@ export class HeaderComponent extends HTMLElement {
   }
 
   #render() {
+    customElements.define("user-info-component", UserInfoComponent);
     const templateElem = document.createElement("template");
-    templateElem.innerHTML = createHeader(this.#imagesService, this.#namesService, this.#activityStatusService);
+    templateElem.innerHTML = createHeader();
 
     this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
   }

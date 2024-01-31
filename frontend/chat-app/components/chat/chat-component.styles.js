@@ -1,7 +1,7 @@
 export function getChatComponentStyles() {
     return `
    <style>
-        @import url('../common.css');
+      @import url('/style.css');
    
        .chat {
             background-color: var(--light-gray-color);

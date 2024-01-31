@@ -7,14 +7,20 @@ import {messageService} from './chat-app/services/messageService.js';
 import {httpService} from './chat-app/services/httpService.js';
 import {ChatComponent} from './chat-app/components/chat/chat-component.js';
 import { HeaderComponent } from './chat-app/components/header/header-component.js';
+import { activityService } from './chat-app/services/activityService.js';
+import { imagesService } from './chat-app/services/imagesService.js';
+import { namesService } from './chat-app/services/namesService.js';
 
 
 diContainer.register(SERVICES.messages, messageService);
 diContainer.register(SERVICES.http, httpService);
+diContainer.register(SERVICES.activity, activityService);
+diContainer.register(SERVICES.images, imagesService);
+diContainer.register(SERVICES.names, namesService);
 
 [
     ChatComponent,
-    HeaderComponent,
+    HeaderComponent
 ].map(component => customElements.define(component.name, component));
 
 

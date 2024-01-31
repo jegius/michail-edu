@@ -1,5 +1,12 @@
-export function getActivityStatusService () {
+export function activityService () {
   // Вместо асинхронной функции с fetch запросом пока что мок с обычной переменной
-  let response = true
-  return response;
+  
+  function getActivity() {
+    let response = true
+    return response;
+  }
+
+  return {
+    getActivity
+  }
 }
