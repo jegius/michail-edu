@@ -24,10 +24,16 @@ export class UserInfoComponent extends HTMLElement {
   }
 
   #render() {
-    const templateElem = document.createElement("template");
-    templateElem.innerHTML = createUserInfo(this.#imageService.getImage(), this.#namesService.getUserName(), this.#activityStatusService.getActivity());
+    let activeStatusSpan;
 
-    // this.#imagesService.getImage(), this.#namesService.getName(), this.#activityStatusService.getActivity()
+    if (this.#activityStatusService.getActivity()) {
+      activeStatusSpan = 'Active'
+    } else {
+      activeStatusSpan = 'Inactive'
+    }
+
+    const templateElem = document.createElement("template");
+    templateElem.innerHTML = createUserInfo(this.#imageService.getImage(), this.#namesService.getUserName(), activeStatusSpan);
 
     this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
 
