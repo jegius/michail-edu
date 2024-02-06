@@ -1,23 +1,25 @@
-import {getHeaderComponentStyles} from './header-component.styles.js';
+import { UserInfoComponent } from '../user-info/user-info-component.js';
+import { createHeader } from './header-component.template.js';
 
-export function createHeader() {
-    return `
-    ${getHeaderComponentStyles()}
-    
-    <div class="header center">
-      <div class="header-profile-photo-cover"> 
-        <div class="header-profile-photo"> 
+export class HeaderComponent extends HTMLElement {
+  static get name() {
+    return "header-component";
+  }
 
-        </div>
-        <div class="header-profile-status-img">
+  constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
+  }
 
-        </div>
-      </div>
-      
-      <div class="header-profile-name-cover">
-          <h2 class="header-profile-name-text">Ope</h2>
-          <p class="header-profile-status-paragraph">Active</p>
-      </div>
-    </div>
-    `;
+  connectedCallback() {
+    this.#render()
+  }
+
+  #render() {
+    // customElements.define("user-info-component", UserInfoComponent);
+    const templateElem = document.createElement("template");
+    templateElem.innerHTML = createHeader();
+
+    this.shadowRoot.appendChild(templateElem.content.cloneNode(true));
+  }
 }
