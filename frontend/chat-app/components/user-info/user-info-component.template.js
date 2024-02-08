@@ -1,48 +1,46 @@
 import { getUserInfoStyles } from "./user-info-component.styles.js";
 
-export function createUserInfo(userData = {}) {
-  let activeStatus = userData.activity;
-  let imgURL = userData.img;
-  let userName = userData.name;
+export function createUserInfo({isActive, avatar, nickName, firstName = null, lastName = null} = {}) {
 
-
-  let activeStatusSpan;
-
-  if (activeStatus) {
-    activeStatusSpan = 'Active'
-  } else {
-    activeStatusSpan = 'Inactive'
+  const getAvatarLetters = function(userName, userLastName) {
+    let nickLetters;
+    if (!userLastName) {
+      if (userName.length === 1) {
+        nickLetters = userName[0] + userName[0]
+      } else {
+        nickLetters = userName[0] + userName[userName.length - 1]
+      }
+    } else {
+      nickLetters = userName[0] + userLastName[0]
+    }
+    return nickLetters.toUpperCase()
   }
 
-  
-  let profileStatusImgElement = '<div></div>'
-  
-  if (activeStatus) {
-    profileStatusImgElement = '<div class="user-info-activity-dot"></div>'
+  let nickLetters;
+
+  if (!firstName) {
+    nickLetters = getAvatarLetters(nickName)
   } else {
-    profileStatusImgElement = '<div class="user-info-activity-dot-inactive"></div>'
+    nickLetters = getAvatarLetters(firstName, lastName)
   }
 
-  let profileImgElement;
-
-  if (imgURL !== '') {
-    profileImgElement = `<img src="${imgURL}" alt="" class='user-info-photo'>`
-  } else {
-    profileImgElement = `<p class='user-info-img-letter'>${userName[0]}</p>`
-  }
 
     return `
     ${getUserInfoStyles()}
-      <div class="user-info-cover">
+      <div class="user-info">
       
         <div class="user-info-photo-cover"> 
-          ${profileImgElement}
-          ${profileStatusImgElement}
+          ${avatar? '<img src='+avatar+' alt="" class="user-info-photo-cover_img">' : 
+          '<div class="user-info-photo-cover_letter">'+nickLetters+'</div>'}
+          <div class="${isActive? 
+            'user-info-photo-cover_activity-dot' : 
+            'user-info-photo-cover_activity-dot user-info-photo-cover_activity-dot_inactive'}">
+          </div>
         </div>
 
         <div class="user-info-name-cover">
-          <h2 class="user-info-name-text">${userName}</h2>
-          <span class="user-info-activity-span">${activeStatusSpan}</span>
+          <h2 class="user-info-name-cover_text">${nickName}</h2>
+          <span class="user-info-name-cover_activity">${isActive? 'active' : 'inactive'}</span>
         </div>
 
       </div>

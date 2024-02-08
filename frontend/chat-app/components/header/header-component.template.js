@@ -4,7 +4,7 @@ export function createHeader() {
     return `
     ${getHeaderComponentStyles()}
     <div class="header">
-
+      <user-info-component>
     </div>
     `;
 }

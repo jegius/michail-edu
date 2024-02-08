@@ -1,27 +1,31 @@
+import { EventObserver } from "../utils/observer"
+
 export function authService () {
-
-  // пока моковые login и logout, потому что этот функционал еще нигде не реализован, чтобы работало
-
-  let auth;
-  
-  function login() {
-    auth = true
-  }
-
-  function logout() {
-    auth = false
-  }
 
   async function getCurrentUser$() {
     let response = {
-      activity: true,
-      img: 'public/images/profile-img.png',
-      name: 'Ope'
+      firstName: 'Ivan',
+      lastName: 'Alekseev',
+      nickName: 'Ope',
+      email: '',
+      password: '',
+      isActive: true,
+      avatar: 'public/images/profile-img.png'
     }
     return response
   }
 
+  function login () {
+    EventObserver.subscribe(getCurrentUser$())
+  }
+
+  function logout() {
+    EventObserver.unsubscribe(getCurrentUser$())
+  }
+
   return {
-    getCurrentUser$
+    getCurrentUser$,
+    login,
+    logout
   }
 }

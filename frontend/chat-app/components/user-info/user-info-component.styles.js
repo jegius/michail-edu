@@ -3,16 +3,8 @@ export function getUserInfoStyles() {
   return `
   <style>
     @import url('/common.css');
-    
-    .user-info-cover, .user-info-photo, .user-info-photo-cover, .user-info-activity-dot, .user-info-img-letter, .user-info-activity-dot-inactive, .user-info-name-cover, .user-info-name-text, .user-info-activity-span {
-      font-size: 16px;
-      text-decoration: none;
-      padding: 0;
-      margin: 0;
-      font-family: Inter;
-    }
 
-    .user-info-cover{
+    .user-info{
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,23 +15,23 @@ export function getUserInfoStyles() {
       position: relative;
     }
     
-    .user-info-photo {
+    .user-info-photo-cover_img {
       width: 2.375rem;
       height: 2.4rem;
     }
 
-    .user-info-img-letter {
+    .user-info-photo-cover_letter {
       text-align: center;
       color: var(--white-color);
       background-color: var(--orange-color);
       border-radius: 50%;
       width: 2.375rem;
       height: 2.4rem;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       margin-bottom: 0.4rem;
     }
     
-    .user-info-activity-dot {
+    .user-info-photo-cover_activity-dot {
       background: var(--light-green-color);
       border: 0.136rem solid var(--black-color);
       border-radius: 50%;
@@ -57,21 +49,22 @@ export function getUserInfoStyles() {
       height: 0.7rem;
     }
 
-    .user-info-name-cover {
+    .user-info-photo-cover_activity-dot_inactive {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.188rem;
     }
     
-    .user-info-name-text {
+    .user-info-name-cover_text {
       font-weight: 500;
       font-size: 1.2rem;
       line-height: 0.5rem;
       color: var(--black-color);
+      margin: 0;
     }
     
-    .user-info-activity-span {
+    .user-info-name-cover_activity {
       font-weight: 400;
       font-size: 0.75rem;
       line-height: 1.5rem;

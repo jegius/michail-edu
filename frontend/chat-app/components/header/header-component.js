@@ -1,4 +1,3 @@
-import { UserInfoComponent } from '../user-info/user-info-component.js';
 import { createHeader } from './header-component.template.js';
 
 export class HeaderComponent extends HTMLElement {
@@ -16,7 +15,6 @@ export class HeaderComponent extends HTMLElement {
   }
 
   #render() {
-    // customElements.define("user-info-component", UserInfoComponent);
     const templateElem = document.createElement("template");
     templateElem.innerHTML = createHeader();
 
