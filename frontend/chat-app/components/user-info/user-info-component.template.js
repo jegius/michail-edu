@@ -1,37 +1,21 @@
+import { getAvatarLetters } from "../../utils/utils.js";
 import { getUserInfoStyles } from "./user-info-component.styles.js";
 
-export function createUserInfo({isActive, avatar, nickName, firstName = null, lastName = null} = {}) {
-
-  const getAvatarLetters = function(userName, userLastName) {
-    let nickLetters;
-    if (!userLastName) {
-      if (userName.length === 1) {
-        nickLetters = userName[0] + userName[0]
-      } else {
-        nickLetters = userName[0] + userName[userName.length - 1]
-      }
-    } else {
-      nickLetters = userName[0] + userLastName[0]
-    }
-    return nickLetters.toUpperCase()
-  }
-
+export function createUserInfo({isActive, avatar, nickName, firstName = '', lastName = ''} = {}) {
   let nickLetters;
-
-  if (!firstName) {
-    nickLetters = getAvatarLetters(nickName)
-  } else {
+  if (firstName) {
     nickLetters = getAvatarLetters(firstName, lastName)
+  } else {
+    nickLetters = getAvatarLetters(nickName)
   }
-
 
     return `
     ${getUserInfoStyles()}
       <div class="user-info">
       
         <div class="user-info-photo-cover"> 
-          ${avatar? '<img src='+avatar+' alt="" class="user-info-photo-cover_img">' : 
-          '<div class="user-info-photo-cover_letter">'+nickLetters+'</div>'}
+          ${avatar? `<img src=${avatar} alt="" class="user-info-photo-cover_img">` : 
+          `<div class="user-info-photo-cover_letter">${nickLetters}</div>`}
           <div class="${isActive? 
             'user-info-photo-cover_activity-dot' : 
             'user-info-photo-cover_activity-dot user-info-photo-cover_activity-dot_inactive'}">

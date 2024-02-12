@@ -1,11 +1,10 @@
-import { SERVICES } from '../../di/api.js';
-import { diContainer } from '../../di/di.js';
+import { authService } from '../../services/authService.js';
 
 import { createUserInfo } from './user-info-component.template.js';
 
 export class UserInfoComponent extends HTMLElement {
 
-  #currentUserService = diContainer.resolve(SERVICES.auth);
+  #currentUserService = new authService()
 
   static get name() {
     return "user-info-component";
@@ -17,9 +16,11 @@ export class UserInfoComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    this.#currentUserService
-      .getCurrentUser$()
-      .then(response => this.#render(response))
+    this.#currentUserService.subscribeOnCurrentUser(this.#render(this.#currentUserService.currentUser))
+  }
+
+  disconnectedCallback() {
+    this.#currentUserService.unsubscribeFromCurrentUser(this.#render(this.#currentUserService.currentUser))
   }
 
   #render(userData) {

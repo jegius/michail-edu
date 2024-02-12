@@ -1,31 +1,22 @@
-import { EventObserver } from "../utils/observer"
-
-export function authService () {
-
-  async function getCurrentUser$() {
-    let response = {
-      firstName: 'Ivan',
-      lastName: 'Alekseev',
-      nickName: 'Ope',
-      email: '',
-      password: '',
-      isActive: true,
-      avatar: 'public/images/profile-img.png'
-    }
-    return response
+export class authService {
+  constructor() {
+      this.currentUser = {
+        firstName: 'Ivan',
+        lastName: 'Alekseev',
+        nickName: 'Ope',
+        email: '',
+        password: '',
+        isActive: true,
+        avatar: 'public/images/profile-img.png'
+      }; 
+      this.subscribers = [];
   }
 
-  function login () {
-    EventObserver.subscribe(getCurrentUser$())
+  subscribeOnCurrentUser(callback) {
+      this.subscribers.push(callback);
   }
 
-  function logout() {
-    EventObserver.unsubscribe(getCurrentUser$())
-  }
-
-  return {
-    getCurrentUser$,
-    login,
-    logout
+  unsubscribeFromCurrentUser(callback) {
+      this.subscribers = this.subscribers.filter(subscriber => subscriber !== callback);
   }
 }
