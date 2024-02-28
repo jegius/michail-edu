@@ -1,6 +1,4 @@
-import './style.css';
-import javascriptLogo from './javascript.svg';
-import viteLogo from '/vite.svg';
+import './chat-app/components/common.css';
 import { diContainer } from './chat-app/di/di.js';
 import { SERVICES } from './chat-app/di/api.js';
 import { messageService } from './chat-app/services/messageService.js';
@@ -19,12 +17,6 @@ diContainer.register(SERVICES.http, httpService);
 
 document.querySelector('#app').innerHTML = `
   <header-component></header-component>
-  <div>
-    <h1>Hello Boss!</h1>
-    <chat-component test-text="test"></chat-component>
-    <p class="read-the-docs">
-      This is a first task
-    </p>
-  </div>
+  
 `;
 

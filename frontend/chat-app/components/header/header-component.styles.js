@@ -1,31 +1,34 @@
+import '../common.css';
+
 const getHeaderComponentStyle = () => {
-  return (`
+  return `
   <style>
+      @import url('../common.css');
+
       .header {
-        background-color: #EEEEEE;
+        background-color: var(--light-gray-background);
         display: flex;
-        gap: 16px;
+        gap: 1rem;
         justify-content: center;
         align-items: center;
-        width: 100vw;
-        padding-bottom: 18px;
-        padding-top: 18px;
+        padding-bottom: 1.125rem;
+        padding-top: 1.125rem;
       }
-      .header img {
-        width: 38px;
-        height: 38px;
-        border-radius: 50px;
+      .header__img {
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 3.2rem;
       }
-      .name {
-        font-size: 24px;
+      .header__name {
+        font-size: 1.5rem;
       }
-      .status {
-        font-size: 12px;
+      .header__status {
+        font-size: 0.75rem;
         color: #707070;
       }
    
    </style>
-  `)
+  `
 }
 
 export { getHeaderComponentStyle } 

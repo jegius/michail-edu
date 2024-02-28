@@ -7,10 +7,10 @@ return (
   `
   ${getHeaderComponentStyle()}
   <header class="header">
-  <img src="${avatar}" alt='avatar'/>
-  <div class="person">
-    <div class="name">${name}</div>
-    <div class="status">${status}</div>
+  <img class="header__img" src="${avatar}" alt='avatar'/>
+  <div>
+    <div class="header__name">${name}</div>
+    <div class="header__status">${status}</div>
   </div>
 </header>
   `
