@@ -12,7 +12,7 @@ export class HeaderComponent extends HTMLElement {
 
   render () {
     const templateElem = document.createElement("template");
-    templateElem.innerHTML = createHeaderTemplate({});
+    templateElem.innerHTML = createHeaderTemplate();
     this.shadowRoot.appendChild(templateElem.content.cloneNode(true))
   }
 
