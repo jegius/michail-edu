@@ -12,13 +12,11 @@ diContainer.register(SERVICES.messages, messageService);
 diContainer.register(SERVICES.http, httpService);
 
 [
-  ChatComponent, HeaderComponent, UserInfoBlock
+  ChatComponent, HeaderComponent
 ].map(component => customElements.define(component.name, component));
 
 
 document.querySelector('#app').innerHTML = `
-  <header-component>
-  <user-info-block></user-info-block>
-  </header-component>
+  <header-component></header-component>
 `;
 
