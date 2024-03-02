@@ -1,4 +1,4 @@
-import '../common.css';
+import "../common.css";
 
 const getUserInfoBlockComponentStyle = () => {
   return `
@@ -11,8 +11,8 @@ const getUserInfoBlockComponentStyle = () => {
         align-items: center;
       }
       .user-info__img {
-        width: 2.4rem;
-        height: 2.4rem;
+        max-width: 2.4rem;
+        max-height: 2.4rem;
         border-radius: 3.2rem;
       }
       .user-info__name {
@@ -23,7 +23,7 @@ const getUserInfoBlockComponentStyle = () => {
         color:var(--gray-text-color);
       }
    </style>
-  `
-}
+  `;
+};
 
-export { getUserInfoBlockComponentStyle } 
+export { getUserInfoBlockComponentStyle };

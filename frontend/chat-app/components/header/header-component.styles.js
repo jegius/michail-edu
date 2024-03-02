@@ -1,4 +1,4 @@
-import '../common.css';
+import "../common.css";
 
 const getHeaderComponentStyle = () => {
   return `
@@ -11,7 +11,7 @@ const getHeaderComponentStyle = () => {
         padding-top: 1.125rem;
       }
    </style>
-  `
-}
+  `;
+};
 
-export { getHeaderComponentStyle } 
+export { getHeaderComponentStyle };

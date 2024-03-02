@@ -1,14 +1,11 @@
-import { getUserInfoBlockComponentStyle } from "./user-info-block.styles"
+import { getUserInfoBlockComponentStyle } from "./user-info-block.styles";
 
-
-
-
-export function createUserInfoBlockTemplate (props) {
+export function createUserInfoBlockTemplate(props) {
   if (!props) {
-    return null
+    return null;
   }
-  const {name, avatar, status} = props;
-  return (`
+  const { name, avatar, status } = props;
+  return `
   ${getUserInfoBlockComponentStyle()}
   <div class="user-info">
     <img class="user-info__img" src="${avatar}" alt='avatar'/>
@@ -17,5 +14,5 @@ export function createUserInfoBlockTemplate (props) {
       <div class="user-info__status">${status}</div>
     </div>
   </div>
-  `)
+  `;
 }
