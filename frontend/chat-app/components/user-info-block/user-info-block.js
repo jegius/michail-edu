@@ -7,18 +7,21 @@ export class UserInfoBlock extends HTMLElement {
   static get name() {
     return "user-info-block";
   }
-
+  currentUser;
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
   connectedCallback() {
-    this.#authService.getCurrentUser().then((user) => this.#render(user));
+    this.#authService.getCurrentUser().then((user) => {
+      this.currentUser = user;
+      this.#render(this.currentUser);
+    });
   }
 
   #render(user) {
     const templateElm = document.createElement("template");
-    templateElm.innerHTML = createUserInfoBlockTemplate(user);
+    templateElm.innerHTML = createUserInfoBlockTemplate(this.currentUser);
     this.shadowRoot.appendChild(templateElm.content.cloneNode(true));
   }
 }
