@@ -1,5 +1,6 @@
 import { createHeaderTemplate } from "./header-component.template";
 
+
 export class HeaderComponent extends HTMLElement {
   static get name() {
     return "header-component";
